@@ -5,6 +5,7 @@ import (
 	"risky_plumber/dto"
 )
 
+// CreateRisk creates a new risk and returns the created risk details.
 func (e *Engine) CreateRisk(ctx context.Context, req *dto.CreateRiskRequest) (*dto.Risk, error) {
 	risk, err := e.RiskRepo.CreateRisk(req.State, req.Title, req.Desc)
 	if err != nil {
@@ -19,6 +20,7 @@ func (e *Engine) CreateRisk(ctx context.Context, req *dto.CreateRiskRequest) (*d
 	}, nil
 }
 
+// GetRiskByID retrieves a risk by its unique ID.
 func (e *Engine) GetRiskByID(ctx context.Context, req *dto.GetRiskByIdRequest) (*dto.Risk, error) {
 	risk, err := e.RiskRepo.GetRiskById(req.RiskId)
 	if err != nil {
@@ -33,6 +35,7 @@ func (e *Engine) GetRiskByID(ctx context.Context, req *dto.GetRiskByIdRequest) (
 	}, nil
 }
 
+// GetRiskList retrieves all risks currently stored.
 func (e *Engine) GetRiskList(ctx context.Context, req *dto.EmptyRequest) (*dto.GetRisksResponse, error) {
 	risks, err := e.RiskRepo.GetRiskList()
 	if err != nil {
