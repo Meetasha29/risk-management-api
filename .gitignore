@@ -1,0 +1,34 @@
+# Binaries
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.dll
+
+# Go build artifacts
+/bin/
+/pkg/
+
+# Go modules
+vendor/
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Git
+.DS_Store
+.gitignore
+
+# Environment Variables
+.env
+
+# Debugging
+trace.out

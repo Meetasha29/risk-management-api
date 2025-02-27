@@ -3,7 +3,6 @@ package handler
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"risky_plumber/dto"
@@ -51,7 +50,7 @@ func (h *RiskHandler) HandleSingleRiskRequest(w http.ResponseWriter, r *http.Req
 func (h *RiskHandler) ListRisks(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	resp, err := h.engine.GetRiskList(ctx, &dto.EmptyRequest{})
 	if err != nil {
-		log.Println(fmt.Sprintf("ListRisk failed %v", err.Error()))
+		log.Printf("ListRisk failed %v", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -62,14 +61,14 @@ func (h *RiskHandler) ListRisks(ctx context.Context, w http.ResponseWriter, r *h
 func (h *RiskHandler) CreateRisk(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	var req *dto.CreateRiskRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		log.Println(fmt.Sprintf("ListRisk failed %v", err.Error()))
+		log.Printf("ListRisk failed %v", err.Error())
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
 	resp, err := h.engine.CreateRisk(ctx, req)
 	if err != nil {
-		log.Println(fmt.Sprintf("CreateRisk failed %v", err.Error()))
+		log.Printf("CreateRisk failed %v", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -81,7 +80,7 @@ func (h *RiskHandler) CreateRisk(ctx context.Context, w http.ResponseWriter, r *
 func (h *RiskHandler) GetRisk(ctx context.Context, w http.ResponseWriter, r *http.Request, id string) {
 	resp, err := h.engine.GetRiskByID(ctx, &dto.GetRiskByIdRequest{RiskId: id})
 	if err != nil {
-		log.Println(fmt.Sprintf("GetRiskByID failed %v", err.Error()))
+		log.Printf("GetRiskByID failed %v", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

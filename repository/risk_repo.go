@@ -8,13 +8,14 @@ import (
 	"github.com/google/uuid"
 )
 
+// InMemoryRiskRepo provides an in-memory storage for risks.
 type InMemoryRiskRepo struct {
 	Risks map[string]*models.Risk
 }
 
 func NewInMemoryRiskRepo() *InMemoryRiskRepo {
 	return &InMemoryRiskRepo{
-		Risks: make(map[string]*models.Risk),
+		Risks: make(map[string]*models.Risk), // Stored as map for easy access
 	}
 }
 

@@ -1,5 +1,7 @@
 package dto
 
+// Stores requests and response objects send over network
+
 type Risk struct {
 	RiskId string
 	State  string
